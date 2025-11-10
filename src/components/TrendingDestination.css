@@ -1,0 +1,555 @@
+/* Main Container */
+.trending-destination {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.trending-container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 40px;
+  position: relative;
+}
+
+.trending-title {
+  font-size: 4rem;
+  font-weight: 700;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  margin-bottom: 60px;
+  font-family: 'Brush Script MT', cursive;
+}
+
+/* Stacked Cards Wrapper */
+.stacked-cards-wrapper {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stacked-cards-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1500px;
+}
+
+/* Destination Card */
+.stacked-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 800px;
+  height: 450px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Icon Badge - Left Side */
+.icon-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
+
+.destination-icon {
+  font-size: 2rem;
+}
+
+/* Stats Container - Top Center */
+/* Stats Container - Move to Right Side */
+.stats-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;  /* Changed from left: 50% and transform */
+  display: flex;
+  gap: 15px;
+  z-index: 5;
+}
+
+.stat-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.stat-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Action Buttons - Right Side - FIXED */
+.action-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 5;
+}
+
+.action-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  overflow: hidden;
+}
+
+.action-btn:hover {
+  transform: scale(1.1);
+  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.action-btn svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.info-btn svg {
+  stroke: #667eea;
+  stroke-width: 2.5;
+}
+
+.favorite-btn svg {
+  stroke: #667eea;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.favorite-btn:hover svg {
+  stroke: #ff6b6b;
+  fill: #ff6b6b;
+}
+
+.info-btn:hover svg {
+  stroke: #4fc3f7;
+}
+
+/* Card Content - Bottom Overlay */
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+  padding: 30px 30px 25px;
+  color: white;
+}
+
+.location-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.location-info svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.location-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+}
+
+.location-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* Navigation Arrows */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  font-size: 2.5rem;
+  color: #667eea;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-arrow-left {
+  left: 40px;
+}
+
+.nav-arrow-right {
+  right: 40px;
+}
+
+.nav-arrow:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Pagination Dots */
+.pagination-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: white;
+  width: 40px;
+  border-radius: 6px;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Plan Trip Button */
+.plan-trip-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 40px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin: 30px auto 0;
+  width: fit-content;
+}
+
+.plan-trip-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+}
+
+.plan-trip-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Side Buttons */
+.side-buttons {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.side-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.side-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.side-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Login Modal */
+.login-required-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+.login-required-modal {
+  background: white;
+  border-radius: 25px;
+  padding: 50px 40px;
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease;
+}
+
+.modal-icon-container {
+  margin-bottom: 25px;
+}
+
+.modal-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.modal-message {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-btn-primary {
+  padding: 16px 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.modal-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+}
+
+.modal-btn-secondary {
+  padding: 16px 30px;
+  background: transparent;
+  color: #666;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-btn-secondary:hover {
+  background: #f5f5f5;
+  border-color: #ccc;
+}
+
+/* Main Container with Simple Mountain Background */
+/* Main Container - Full Page Coverage */
+.trending-destination {
+  min-height: 100vh;
+  width: 100%;
+  background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.trending-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* title left, logo right */
+  margin-bottom: 24px;
+}
+
+.trending-menu-logo {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+
+/* Optional: Subtle animation */
+.trending-destination::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.05) 50%, 
+    transparent 100%);
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .stacked-card {
+    width: 600px;
+    height: 400px;
+  }
+  
+  .trending-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stacked-card {
+    width: 90%;
+    height: 350px;
+  }
+  
+  .trending-title {
+    font-size: 2.5rem;
+  }
+  
+  .nav-arrow {
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+  }
+  
+  .nav-arrow-left {
+    left: 20px;
+  }
+  
+  .nav-arrow-right {
+    right: 20px;
+  }
+  
+  .stats-container {
+    flex-wrap: wrap;
+    width: 90%;
+  }
+  
+  .action-btn {
+    width: 45px;
+    height: 45px;
+  }
+}

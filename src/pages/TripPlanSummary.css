@@ -1,0 +1,555 @@
+.trip-plan-summary {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #4a90e2 0%, #7b68a6 100%);
+  background-image: url('https://images.unsplash.com/photo-1528164344705-47542687000d?w=1920');
+  background-size: cover;
+  background-blend-mode: overlay;
+  position: relative;
+}
+
+/* Header */
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-text {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* Main Content */
+.summary-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 30px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* Cards */
+.summary-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Days Card */
+.days-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+}
+
+.card-icon {
+  font-size: 2rem;
+}
+
+.date-range {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Stays & Destination */
+.destination-icons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.dest-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 15px;
+  background: #f0f0f0;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 80px;
+}
+
+.dest-icon.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.dest-icon.more {
+  background: #e0e0e0;
+  justify-content: center;
+}
+
+.dest-icon:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.dest-icon span:first-child {
+  font-size: 2rem;
+}
+
+.dest-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Trip Mates */
+.mates-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background: #f8f9ff;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.mates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mate-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.mate-item:hover {
+  background: #e8e8ff;
+  transform: translateX(5px);
+}
+
+.mate-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mate-avatar {
+  font-size: 1.5rem;
+}
+
+.mate-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.mate-city {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Places Carousel */
+.places-carousel {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+}
+
+.carousel-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #667eea;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+  background: #5568d3;
+  transform: scale(1.1);
+}
+
+.place-image {
+  flex: 1;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 300px;
+}
+
+.place-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.place-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Documents */
+.document-items {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.doc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 25px;
+  background: #f8f9ff;
+  border-radius: 15px;
+  border: 2px solid #e0e0ff;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.doc-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+}
+
+.doc-item span:first-child {
+  font-size: 1.5rem;
+}
+
+/* Right Column */
+.right-column {
+  position: relative;
+}
+
+/* Action Buttons */
+.action-buttons-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 18px;
+  border: none;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-btn.primary {
+  background: #667eea;
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.action-btn.secondary {
+  background: #4ade80;
+  color: white;
+  box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Total Cost Card */
+.cost-card {
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.cost-card .card-title {
+  color: white;
+}
+
+.total-amount {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.cost-description {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.cost-validity {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  font-style: italic;
+}
+
+.cost-illustration {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 4rem;
+  opacity: 0.3;
+}
+
+/* Fun Facts Card */
+.fun-facts-card {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  color: white;
+  position: relative;
+}
+
+.fun-facts-card .card-title {
+  color: white;
+}
+
+.weather-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.weather-icon {
+  font-size: 3rem;
+}
+
+.weather-details {
+  flex: 1;
+}
+
+.fact-item {
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.fun-fact-item {
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.clouds {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2rem;
+  opacity: 0.4;
+}
+
+/* Tips & Guides Card */
+.tips-card {
+  background: white;
+  position: relative;
+}
+
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tip-item {
+  padding: 15px 20px;
+  background: #f8f9ff;
+  border-radius: 15px;
+  border: 2px solid #e0e0ff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tip-item:hover {
+  background: #667eea;
+  color: white;
+  transform: translateX(10px);
+}
+
+.tips-illustration {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 3rem;
+  opacity: 0.2;
+}
+
+/* Floating Action Buttons */
+.fab {
+  position: fixed;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.chat-fab {
+  bottom: 100px;
+  background: #667eea;
+  color: white;
+}
+
+.menu-fab {
+  bottom: 30px;
+  background: #333;
+  color: white;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Place Action Icons - Black Circle with White Icons */
+.place-actions {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.place-action-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.place-action-btn:hover {
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.9);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.place-action-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.favorite-btn:hover svg {
+  stroke: #ff6b6b;
+  fill: #ff6b6b;
+}
+
+.info-btn:hover svg {
+  stroke: #4fc3f7;
+}
+
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .summary-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .summary-content {
+    padding: 15px;
+  }
+  
+  .header-title {
+    position: static;
+    transform: none;
+    margin: 10px 0;
+  }
+  
+  .summary-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .action-buttons-row {
+    flex-direction: column;
+  }
+}

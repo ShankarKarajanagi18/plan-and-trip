@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+.register-page {
+  background-image: url('https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.register-page .auth-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}

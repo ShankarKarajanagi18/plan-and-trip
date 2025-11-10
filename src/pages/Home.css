@@ -1,0 +1,29 @@
+.home-page {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+  scroll-behavior: smooth;
+}
+
+.home-page > * {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Hide scrollbar but keep functionality */
+.home-page::-webkit-scrollbar {
+  width: 8px;
+}
+
+.home-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.home-page::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.home-page::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

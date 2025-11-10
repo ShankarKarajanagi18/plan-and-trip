@@ -1,0 +1,120 @@
+.booking-page {
+  min-height: 100vh;
+  padding: 100px 20px 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-page h1 {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.booking-form {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 100%;
+}
+
+.booking-form input,
+.booking-form select {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.booking-form input:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.booking-form button[type="submit"] {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.booking-form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.destination-info {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.destination-info h2 {
+  margin: 0 0 10px 0;
+  font-size: 2rem;
+}
+
+.destination-info p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.price-display {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.price-display h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.price-display .price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+@media (max-width: 768px) {
+  .booking-page h1 {
+    font-size: 2rem;
+  }
+  
+  .booking-form {
+    padding: 30px 25px;
+  }
+  
+  .destination-info h2 {
+    font-size: 1.5rem;
+  }
+}
