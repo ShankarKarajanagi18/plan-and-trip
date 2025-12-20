@@ -308,3 +308,25 @@ code {
   }
 }
 
+/* === Liquid Glass Theme Variables & Utility === */
+:root {
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-bg-2: rgba(255,255,255,0.04);
+  --glass-bg-3: rgba(255,255,255,0.02);
+  --glass-border: rgba(255,255,255,0.08);
+  --glass-text: #111827; /* dark text for readability on glass */
+}
+
+.liquid-glass {
+  background: var(--glass-bg) !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border) !important;
+  color: var(--glass-text) !important;
+}
+
+/* Keep scrollbars functional but visually subtle */
+*::-webkit-scrollbar { width: 8px; height:8px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 8px; }
+

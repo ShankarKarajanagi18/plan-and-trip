@@ -315,7 +315,9 @@ const TripPlannerPage = () => {
             <div className="planner-content">
                 {/* Left Panel - Dynamic Step Content */}
                 <div className="events-panel">
-                    {renderStepContent()}
+                    <div className="events-scroll-area">
+                        {renderStepContent()}
+                    </div>
 
                     {/* Navigation Buttons */}
                     <div className="nav-buttons">
@@ -331,42 +333,44 @@ const TripPlannerPage = () => {
                     <button className="close-btn" onClick={() => navigate(-1)}>✕</button>
                     <h2>Summarization</h2>
 
-                    {/* Select Location Section */}
-                    <div className="summary-section">
-                        <h3>Select Location</h3>
-                        {selectedLocations.map((location, index) => (
-                            <div key={index} className="location-item">
-                                <span>{location}</span>
-                                <button className="remove-btn">❤️</button>
-                            </div>
-                        ))}
-                    </div>
+                    <div className="summary-scroll-area">
+                        {/* Select Location Section */}
+                        <div className="summary-section">
+                            <h3>Select Location</h3>
+                            {selectedLocations.map((location, index) => (
+                                <div key={index} className="location-item">
+                                    <span>{location}</span>
+                                    <button className="remove-btn">❤️</button>
+                                </div>
+                            ))}
+                        </div>
 
-                    {/* Action Buttons */}
-                    <button
-                        className={`summary-btn ${currentStep >= 2 ? 'completed' : ''}`}
-                        onClick={handleSelectDates}
-                    >
-                        + Select Dates
-                    </button>
-                    <button
-                        className={`summary-btn ${currentStep >= 3 ? 'completed' : ''}`}
-                        onClick={() => setCurrentStep(3)}
-                    >
-                        + Add Travel Partner
-                    </button>
-                    <button
-                        className={`summary-btn ${currentStep >= 4 ? 'completed' : ''}`}
-                        onClick={() => setCurrentStep(4)}
-                    >
-                        + Trip Details
-                    </button>
-                    <button
-                        className={`summary-btn ${currentStep >= 5 ? 'completed' : ''}`}
-                        onClick={() => setCurrentStep(5)}
-                    >
-                        + Final Step
-                    </button>
+                        {/* Action Buttons */}
+                        <button
+                            className={`summary-btn ${currentStep >= 2 ? 'completed' : ''}`}
+                            onClick={handleSelectDates}
+                        >
+                            + Select Dates
+                        </button>
+                        <button
+                            className={`summary-btn ${currentStep >= 3 ? 'completed' : ''}`}
+                            onClick={() => setCurrentStep(3)}
+                        >
+                            + Add Travel Partner
+                        </button>
+                        <button
+                            className={`summary-btn ${currentStep >= 4 ? 'completed' : ''}`}
+                            onClick={() => setCurrentStep(4)}
+                        >
+                            + Trip Details
+                        </button>
+                        <button
+                            className={`summary-btn ${currentStep >= 5 ? 'completed' : ''}`}
+                            onClick={() => setCurrentStep(5)}
+                        >
+                            + Final Step
+                        </button>
+                    </div>
 
                     <button className="chat-fab">💬</button>
                     <button className="menu-fab">☰</button>

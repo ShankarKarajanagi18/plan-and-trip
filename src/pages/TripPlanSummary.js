@@ -62,11 +62,7 @@ const TripPlanSummary = () => {
         <div className="trip-plan-summary">
             {/* Header */}
             <div className="summary-header">
-                <div className="header-logo">
-                    <svg width="40" height="40" viewBox="0 0 50 50" fill="none">
-                        <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" fill="white" fontSize="20">P&T</text>
-                    </svg>
-                </div>
+               
                 <div className="header-title">YOUR PERFECT JAPAN PLAN</div>
             </div>
 

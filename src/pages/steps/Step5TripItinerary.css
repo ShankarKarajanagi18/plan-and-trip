@@ -536,3 +536,75 @@
   padding: 25px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
+
+/* Type of Places & Type of Restaurant: make all contained text black for readability */
+.place-type-options,
+.place-type-options *,
+.restaurant-type-options,
+.restaurant-type-options * {
+  color: #000 !important;
+}
+
+/* Also ensure the place/type buttons and labels use black text */
+.place-type-btn,
+.place-type-btn *,
+.restaurant-type-btn,
+.restaurant-type-btn *,
+.category-btn,
+.category-btn * {
+  color: #000 !important;
+}
+
+/* Force black text for Stay Preferences and Dietry (Food) Preferences */
+.stay-preferences-section,
+.stay-preferences-section h3,
+.stay-preferences-section .preference-group,
+.stay-preferences-section .preference-group label,
+.stay-preferences-section .star-number,
+.stay-preferences-section .star-btn,
+.stay-preferences-section .rating-btn,
+.stay-preferences-section .category-btn,
+.stay-preferences-section .place-type-btn,
+.stay-preferences-section .sidebar-item {
+  color: #000 !important;
+}
+
+.food-preferences-section,
+.food-preferences-section h3,
+.food-preferences-section .cuisine-grid,
+.food-preferences-section .cuisine-btn,
+.food-preferences-section .cuisine-btn .cuisine-icon,
+.food-preferences-section .add-btn {
+  color: #000 !important;
+}
+
+/* Keep icon backgrounds intact but ensure their text/icon color is dark where appropriate */
+.stay-preferences-section .sidebar-item .icon,
+.food-preferences-section .cuisine-icon {
+  color: #000 !important;
+}
+
+/* Ensure preference labels (e.g., "Type of places", "Type of Restaurant") are black */
+.trip-preferences-container .preference-group label,
+.trip-preferences-container .preference-group label * {
+  color: #000 !important;
+}
+
+/* Strong override: ensure active place-type buttons also keep black text */
+.place-type-options .place-type-btn.active,
+.place-type-options .place-type-btn.active *,
+.place-type-options .category-btn.active,
+.place-type-options .category-btn.active * {
+  color: #000 !important;
+}
+
+/* Dietary Preferences: ensure 'Type of Places' (dining options) text is black */
+.food-preferences-section .preference-group label,
+.food-preferences-section .dining-place-options,
+.food-preferences-section .dining-place-options *,
+.food-preferences-section .dining-place-btn,
+.food-preferences-section .dining-place-btn *,
+.food-preferences-section .dining-place-btn.active,
+.food-preferences-section .dining-place-btn.active * {
+  color: #000 !important;
+}

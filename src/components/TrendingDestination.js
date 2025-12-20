@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './TrendingDestination.css';
@@ -212,8 +212,8 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
       position = position - destinations.length;
     }
     const isCenter = position === 0;
-    const scale = isCenter ? 1 : 0.85 - Math.abs(position) * 0.08;
-    const translateX = position * 280;
+    const scale = isCenter ? 1 : 0.86 - Math.abs(position) * 0.07;
+    const translateX = position * 220;
     const translateZ = -Math.abs(position) * 100;
     const opacity = Math.abs(position) > 2 ? 0 : 1 - Math.abs(position) * 0.25;
     const rotateY = position * 8;
@@ -226,20 +226,31 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
   };
 
 
-  const backgroundStyle = {
-    minHeight: '100vh',
-    width: '100vw',
-    backgroundImage: "url('/tdbg.jpg')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    position: 'relative'
-  };
+  // Background slideshow images (from public folder)
+  const bgImages = ['/influeLogin.jpg', '/daybg.jpg', '/tdbg.jpg'];
+  const [bgIndex, setBgIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setBgIndex((i) => (i + 1) % bgImages.length);
+    }, 6000); // change every 6s
+    return () => clearInterval(id);
+  }, []);
 
 
   return (
     <>
-      <section className="trending-destination" style={backgroundStyle}>
+      <section className="trending-destination">
+        {/* Background slideshow (crossfade) */}
+        <div className="bg-slideshow" aria-hidden="true">
+          {bgImages.map((img, i) => (
+            <div
+              key={img}
+              className={`bg-slide ${i === bgIndex ? 'active' : ''}`}
+              style={{ backgroundImage: `url(${img})` }}
+            />
+          ))}
+        </div>
         {showMenuIcon && (
           <div className={`left-sidebar-menu ${isMenuOpen ? 'open' : ''}`}>
             <div className="sidebar-menu-items">
@@ -262,11 +273,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
             </div>
           </div>
         )}
-
-
-        <div className="menu-toggle-icon" onClick={() => setIsMenuOpen(true)}>
-          <img src="/menuLogo.png" alt="Menu" />
-        </div>
 
 
         <div className="trending-container">

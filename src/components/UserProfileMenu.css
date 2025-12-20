@@ -372,20 +372,86 @@ select.form-input {
 .action-btn {
   width: 48px;
   height: 48px;
-  background-color: #374151;
-  border: none;
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #5b8ced;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
+  backdrop-filter: blur(4px);
+}
+
+.action-btn svg {
+  display: block;
+  stroke: currentColor;
 }
 
 .action-btn:hover {
-  background-color: #4b5563;
+  background-color: rgba(255, 255, 255, 0.12);
   transform: scale(1.05);
+}
+
+/* Back button specific styles: icon in a black circular badge, white symbol */
+.back-btn {
+  width: auto;
+  min-width: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent !important;
+  border: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+.back-btn .icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #000000; /* solid black circle */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.back-btn .icon-wrap svg {
+  width: 20px;
+  height: 20px;
+  stroke: #ffffff; /* white back symbol */
+  color: #ffffff;
+}
+
+
+.back-btn:hover .icon-wrap {
+  background-color: #111111;
+  transform: none;
+}
+
+/* Specific override to cancel .action-btn styles when both classes are present */
+.action-btn.back-btn {
+  background: transparent !important;
+  border: none !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+/* Remove any default focus/background rectangle for the back button */
+.back-btn:focus,
+.back-btn:active {
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+.back-btn,
+.back-btn button {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* Coming Soon */

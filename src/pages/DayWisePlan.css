@@ -1,9 +1,10 @@
 .daywise-plan {
-    min-height: 100vh;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    padding-left: 60px;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     position: relative;
+    padding-left: 60px;
 }
 
 /* Timeline Wrapper */
@@ -12,8 +13,14 @@
     z-index: 1;
     width: 100%;
     overflow-x: auto;
+    overflow-y: auto;
     padding: 0 20px;
     padding-left: 40px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    flex: 1;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
 }
 
 .timeline-container {

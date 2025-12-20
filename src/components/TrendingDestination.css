@@ -29,6 +29,37 @@
   pointer-events: none;
 }
 
+/* Background slideshow crossfade */
+.bg-slideshow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 1s ease, transform 8s ease;
+  will-change: opacity, transform;
+}
+
+.bg-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ensure content renders above background slides */
+.trending-container {
+  position: relative;
+  z-index: 2;
+}
+
 /* ============================================
    TRENDING CONTAINER
    ============================================ */
@@ -222,7 +253,7 @@
 
 .stacked-cards-wrapper {
   position: relative;
-  height: 500px;
+  height: 420px; /* reduced height so cards are a bit smaller and fit on one view */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -239,8 +270,8 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 800px;
-  height: 450px;
+  width: 700px; /* slightly smaller */
+  height: 380px; /* slightly smaller */
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
 }
@@ -422,26 +453,31 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 18px 40px;
-  margin: 30px auto 0;
+  padding: 14px 34px;
+  margin: 0;
   width: fit-content;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.28);
   border-radius: 50px;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  transition: all 0.28s ease;
+  position: absolute; /* position over the cards so it's visible on same page */
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
 }
 
 .plan-trip-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+  transform: translateX(-50%) translateY(-4px);
+  box-shadow: 0 8px 36px rgba(0, 0, 0, 0.45);
 }
 
 .plan-trip-btn svg {
@@ -609,11 +645,7 @@
    ============================================ */
 
 @media (max-width: 1024px) {
-  .stacked-card {
-    width: 600px;
-    height: 400px;
-  }
-  
+  /* (kept for clarity) stacked-card width/height adjusted above */
   .trending-title {
     font-size: 3rem;
   }
@@ -1021,7 +1053,7 @@
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(10px);
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1252,10 +1284,10 @@
 /* Plan Trip Button - positioned relative to card */
 .detailed-plan-btn {
   position: absolute;
-  bottom: -150px;
+  bottom: 22px; /* bring button inside visible area */
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #070707 0%, #070707 100%);
   color: white;
   border: 2px solid rgba(255, 200, 87, 0.4);
   padding: 16px 42px;
@@ -1266,9 +1298,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 30px rgba(152, 169, 243, 0.4);
   transition: all 0.3s ease;
-  z-index: 15;
+  z-index: 9999; /* ensure it sits above content */
 }
 
 .detailed-plan-btn:hover {
@@ -1349,12 +1381,12 @@
 /* Left Panel Styling */
 .detailed-left-panel {
   position: absolute;
-  left: 40px;
+  left: 0px;
   top: 50%;
   transform: translateY(-50%);
-  width: 320px;
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(20px);
+  width: 420px;
+  
+  
   border-radius: 20px;
   padding: 30px 25px;
   color: white;
@@ -1366,7 +1398,7 @@
 }
 
 .panel-title {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
   margin: 0 0 20px 0;
   color: white;
@@ -1461,21 +1493,24 @@
 }
 
 .panel-best-time {
-  margin-bottom: 20px;
+  margin-bottom: 12px;
+  padding-bottom: 4px;
+  max-height: none;
+  overflow: visible;
 }
 
 .panel-best-time h4 {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.7);
-  margin: 0 0 10px 0;
+  margin: 0 0 6px 0;
   font-weight: 500;
 }
 
 .time-slots {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1rem;
+  gap: 8px;
+  font-size: 0.92rem;
   font-weight: 600;
 }
 
