@@ -577,3 +577,13 @@
     font-size: 1.5rem;
   }
 }
+.form-section .section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: white !important;
+  margin-bottom: 20px;
+}
+
+.checkout-form-panel .section-title {
+  color: white !important;
+}

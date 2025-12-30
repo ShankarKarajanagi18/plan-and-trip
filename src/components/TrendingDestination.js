@@ -16,6 +16,10 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
   // New state for detailed card view
   const [showDetailedCard, setShowDetailedCard] = useState(false);
   const [detailedCardIndex, setDetailedCardIndex] = useState(0);
+  // State for info icon hover tooltip
+  const [hoveredInfoIconId, setHoveredInfoIconId] = useState(null);
+  // State for stat badge hover tooltip
+  const [hoveredStatType, setHoveredStatType] = useState(null);
 
 
   const navigate = useNavigate();
@@ -38,8 +42,8 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
       description: 'A vibrant mix of modern skyscrapers, traditional temples, and street markets',
       image: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=80',
       distance: '1.2 M',
-      visitors: '50',
-      rating: '15',
+      visitors: '40',
+      rating: '5',
       icon: '🏛️',
       price: 1200,
       detailedInfo: 'Seoul is the capital of South Korea and a fascinating blend of ancient traditions and cutting-edge technology. Visit historic palaces like Gyeongbokgung, explore vibrant neighborhoods like Myeongdong and Hongdae, and experience world-class cuisine from street food to fine dining.'
@@ -49,9 +53,9 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
       name: 'Singapore',
       description: 'A futuristic city with stunning architecture and a rich blend of cultures',
       image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1200&q=80',
-      distance: '1.2 M',
-      visitors: '50',
-      rating: '15',
+      distance: '1.5 M',
+      visitors: '20',
+      rating: '5',
       icon: '🏙️',
       price: 1500,
       detailedInfo: 'Singapore is a modern marvel featuring iconic landmarks like Marina Bay Sands, Gardens by the Bay, and Sentosa Island. Experience diverse cultures in neighborhoods like Chinatown, Little India, and Kampong Glam while enjoying world-class shopping and dining.'
@@ -62,8 +66,8 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
       description: "A cultural haven with ancient temples and picturesque gardens",
       image: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1200&q=80',
       distance: '1.2 M',
-      visitors: '50',
-      rating: '15',
+      visitors: '55',
+      rating: '5',
       icon: '⛩️',
       price: 1400,
       detailedInfo: 'Nara, Japan\'s first permanent capital, is home to friendly deer that roam freely in Nara Park. Visit the impressive Todai-ji Temple housing a giant bronze Buddha, explore traditional gardens, and witness the beauty of cherry blossoms in spring.'
@@ -73,9 +77,9 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
       name: 'Taipei, Taiwan',
       description: "Known for its markets, Chiang Kai-shek Memorial Hall & Taipei 101 skyscraper",
       image: 'https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=1200&q=80',
-      distance: '1.2 M',
-      visitors: '50',
-      rating: '15',
+      distance: '1.6 M',
+      visitors: '25',
+      rating: '4',
       icon: '🏮',
       price: 1100,
       detailedInfo: 'Taipei combines modern skyscrapers with traditional temples and vibrant night markets. Visit the iconic Taipei 101, explore historic temples, soak in hot springs at Beitou, and savor authentic Taiwanese street food at bustling night markets like Shilin and Raohe.'
@@ -85,9 +89,9 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
       name: 'Hangzhou, China',
       description: 'Known for its serene West Lake, ancient temples, and traditional tea culture',
       image: 'https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?w=1200&q=80',
-      distance: '1.2 M',
+      distance: '1.1 M',
       visitors: '50',
-      rating: '15',
+      rating: '4',
       icon: '🏛️',
       price: 1000,
       detailedInfo: 'Hangzhou is famous for the scenic West Lake, a UNESCO World Heritage site surrounded by temples, pagodas, and gardens. Experience traditional tea culture at the Longjing Tea plantations, explore ancient Buddhist temples, and enjoy the natural beauty that has inspired poets for centuries.'
@@ -303,16 +307,47 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
 
                     {/* Info and Like Icons */}
                     <div className="card-action-icons">
-                      <button
-                        className="icon-btn info-icon-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleInfoClick(destination);
-                        }}
-                        aria-label="Show information"
-                      >
-                        <img src="/info.png" alt="Info" />
-                      </button>
+                      <div className="info-icon-wrapper">
+                        <button
+                          className="icon-btn info-icon-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleInfoClick(destination);
+                          }}
+                          onMouseEnter={() => setHoveredInfoIconId(destination.id)}
+                          onMouseLeave={() => setHoveredInfoIconId(null)}
+                          aria-label="Show information"
+                        >
+                          <img src="/info.png" alt="Info" />
+                        </button>
+                        {hoveredInfoIconId === destination.id && (
+                          <div className="info-icon-tooltip">
+                            <div className="tooltip-item">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M2 17L12 22L22 17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M2 12L12 17L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                              <span>{destination.distance}</span>
+                            </div>
+                            <div className="tooltip-item">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                <circle cx="9" cy="7" r="4" stroke="white" strokeWidth="2" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                              </svg>
+                              <span>{destination.visitors}</span>
+                            </div>
+                            <div className="tooltip-item">
+                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="white" strokeWidth="2" />
+                                <circle cx="12" cy="10" r="3" stroke="white" strokeWidth="2" />
+                              </svg>
+                              <span>{destination.rating}</span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                       <button
                         className={`icon-btn like-icon-btn ${likedDestinations[destination.id] ? 'liked' : ''}`}
                         onClick={(e) => {
@@ -332,32 +367,53 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
 
 
                     <div className="stats-container">
-                      <div className="stat-badge">
+                      <div 
+                        className="stat-badge"
+                        onMouseEnter={() => setHoveredStatType('distance')}
+                        onMouseLeave={() => setHoveredStatType(null)}
+                      >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                           <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                           <path d="M2 17L12 22L22 17" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                           <path d="M2 12L12 17L22 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>{destination.distance}</span>
+                        {hoveredStatType === 'distance' && (
+                          <div className="stat-tooltip">Distance</div>
+                        )}
                       </div>
 
 
-                      <div className="stat-badge">
+                      <div 
+                        className="stat-badge"
+                        onMouseEnter={() => setHoveredStatType('visitors')}
+                        onMouseLeave={() => setHoveredStatType(null)}
+                      >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                           <circle cx="9" cy="7" r="4" stroke="white" strokeWidth="2" />
                           <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>{destination.visitors}</span>
+                        {hoveredStatType === 'visitors' && (
+                          <div className="stat-tooltip">Visitors</div>
+                        )}
                       </div>
 
 
-                      <div className="stat-badge">
+                      <div 
+                        className="stat-badge"
+                        onMouseEnter={() => setHoveredStatType('rating')}
+                        onMouseLeave={() => setHoveredStatType(null)}
+                      >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="white" strokeWidth="2" />
                           <circle cx="12" cy="10" r="3" stroke="white" strokeWidth="2" />
                         </svg>
                         <span>{destination.rating}</span>
+                        {hoveredStatType === 'rating' && (
+                          <div className="stat-tooltip">Rating</div>
+                        )}
                       </div>
                     </div>
 

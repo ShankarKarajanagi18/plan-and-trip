@@ -13,17 +13,17 @@ const TrendingDestination = () => {
       description: 'A vibrant mix of modern skyscrapers, traditional temples, and street markets',
       image: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=1200&q=80',
       distance: '1.2 M',
-      visitors: '50',
-      rating: '15'
+      visitors: '40',
+      rating: '5'
     },
     {
       id: 2,
       name: 'Singapore',
       description: 'A futuristic city with stunning architecture and a rich blend of cultures',
       image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=1200&q=80',
-      distance: '1.2 M',
-      visitors: '50',
-      rating: '15'
+      distance: '1.5 M',
+      visitors: '20',
+      rating: '5'
     },
     {
       id: 3,
@@ -31,26 +31,26 @@ const TrendingDestination = () => {
       description: "Experience Japan's timeless temples and cherry blossoms",
       image: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1200&q=80',
       distance: '1.2 M',
-      visitors: '50',
-      rating: '15'
+      visitors: '45',
+      rating: '5'
     },
     {
       id: 4,
       name: 'Taipei, Taiwan',
       description: "Known for its markets, Chiang Kai-shek Memorial Hall & Taipei 101 skyscraper",
       image: 'https://images.unsplash.com/photo-1590735213920-68192a487bc2?w=1200&q=80',
-      distance: '1.2 M',
-      visitors: '50',
-      rating: '15'
+      distance: '1.6 M',
+      visitors: '25',
+      rating: '4'
     },
     {
       id: 5,
       name: 'Hangzhou, China',
       description: 'Known for its serene West Lake, ancient temples, and traditional tea culture',
       image: 'https://images.unsplash.com/photo-1598970434795-0c54fe7c0648?w=1200&q=80',
-      distance: '1.2 M',
+      distance: '1.1 M',
       visitors: '50',
-      rating: '15'
+      rating: '4'
     }
   ];
 

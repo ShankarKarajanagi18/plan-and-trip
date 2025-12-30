@@ -274,13 +274,14 @@
   height: 380px; /* slightly smaller */
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
+  border-radius: 50px;
 }
 
 .card-image-container {
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 25px;
+  border-radius: 50px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
@@ -289,6 +290,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50px;
 }
 
 /* ============================================
@@ -335,11 +337,38 @@
   font-weight: 600;
   font-size: 0.95rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.stat-badge:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
 }
 
 .stat-badge svg {
   width: 16px;
   height: 16px;
+}
+
+.stat-tooltip {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: #f59e0b;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 20;
+  backdrop-filter: blur(10px);
+  animation: tooltipFadeIn 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .card-content {
@@ -736,6 +765,10 @@
   z-index: 10;
 }
 
+.info-icon-wrapper {
+  position: relative;
+}
+
 .icon-btn {
   width: 40px;
   height: 40px;
@@ -767,6 +800,52 @@
 
 .like-icon-btn.liked img {
   filter: brightness(0) invert(1);
+}
+
+/* Info Icon Hover Tooltip */
+.info-icon-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 15;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  animation: tooltipFadeIn 0.2s ease;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.tooltip-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #f0f0f0;
+  white-space: nowrap;
+}
+
+.tooltip-item svg {
+  flex-shrink: 0;
+  opacity: 0.8;
 }
 
 /* Info Modal Styles */
