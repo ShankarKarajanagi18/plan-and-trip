@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import './TrendingDestination.css';
 
-
 const TrendingDestination = ({ showMenuIcon = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -13,19 +12,14 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
   const [likedDestinations, setLikedDestinations] = useState({});
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  // New state for detailed card view
   const [showDetailedCard, setShowDetailedCard] = useState(false);
   const [detailedCardIndex, setDetailedCardIndex] = useState(0);
-  // State for info icon hover tooltip
   const [hoveredInfoIconId, setHoveredInfoIconId] = useState(null);
-  // State for stat badge hover tooltip
   const [hoveredStatType, setHoveredStatType] = useState(null);
-
 
   const navigate = useNavigate();
   const location = useLocation();
   const { isLoggedIn } = useAuth();
-
 
   const menuCategories = [
     { id: 1, name: 'Beaches', icon: '🏝️' },
@@ -33,7 +27,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
     { id: 3, name: 'Mountains', icon: '⛰️' },
     { id: 4, name: 'Iconic Cities', icon: '🏛️' }
   ];
-
 
   const destinations = [
     {
@@ -98,16 +91,13 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
     }
   ];
 
-
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev === 0 ? destinations.length - 1 : prev - 1));
   };
 
-
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === prev === destinations.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev === destinations.length - 1 ? 0 : prev + 1));
   };
-
 
   const handleBookNow = () => {
     if (!isLoggedIn) {
@@ -119,24 +109,20 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
     });
   };
 
-
   const handleLoginRedirect = () => {
     setShowLoginModal(false);
     navigate('/login');
   };
-
 
   const handleCategoryClick = (category) => {
     setIsMenuOpen(false);
     navigate(`/destinations/${category.name.toLowerCase()}`);
   };
 
-
   const handleInfoClick = (destination) => {
     setInfoModalDestination(destination);
     setShowInfoModal(true);
   };
-
 
   const handleLikeClick = (destinationId) => {
     setLikedDestinations(prev => ({
@@ -145,37 +131,39 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
     }));
   };
 
-
   const handleSearchOpen = () => {
     setIsSearchOpen(true);
   };
-
 
   const handleSearchClose = () => {
     setIsSearchOpen(false);
     setSearchQuery('');
   };
 
-
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-
-
     const trimmedQuery = searchQuery.trim();
-
 
     if (!trimmedQuery) {
       alert('Please enter a search term');
       return;
     }
 
-
     setIsSearchOpen(false);
     navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
     setSearchQuery('');
   };
 
-  // New handler for clicking on card to show detailed view
+  // Handler for navigating to attractions page
+  const handleVisitorsClick = (destination) => {
+    navigate('/attractions', { state: { destination } });
+  };
+
+  // NEW: Handler for navigating to packages page
+  const handlePackagesView = (destination) => {
+    navigate('/packages', { state: { destination } });
+  };
+
   const handleCardClick = (index) => {
     const position = (index - currentIndex + destinations.length) % destinations.length;
     if (position > destinations.length / 2) {
@@ -188,7 +176,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
     }
   };
 
-  // Navigation handlers for detailed card view
   const handleDetailedCardPrev = () => {
     setDetailedCardIndex((prev) => (prev === 0 ? destinations.length - 1 : prev - 1));
   };
@@ -197,7 +184,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
     setDetailedCardIndex((prev) => (prev === destinations.length - 1 ? 0 : prev + 1));
   };
 
-  // Book now handler for detailed card view
   const handleDetailedCardBookNow = () => {
     if (!isLoggedIn) {
       setShowDetailedCard(false);
@@ -208,7 +194,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
       state: { destination: destinations[detailedCardIndex] }
     });
   };
-
 
   const getCardStyle = (index) => {
     let position = (index - currentIndex + destinations.length) % destinations.length;
@@ -229,23 +214,19 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
     };
   };
 
-
-  // Background slideshow images (from public folder)
   const bgImages = ['/influeLogin.jpg', '/daybg.jpg', '/tdbg.jpg'];
   const [bgIndex, setBgIndex] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
       setBgIndex((i) => (i + 1) % bgImages.length);
-    }, 6000); // change every 6s
+    }, 6000);
     return () => clearInterval(id);
   }, []);
-
 
   return (
     <>
       <section className="trending-destination">
-        {/* Background slideshow (crossfade) */}
         <div className="bg-slideshow" aria-hidden="true">
           {bgImages.map((img, i) => (
             <div
@@ -255,6 +236,7 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
             />
           ))}
         </div>
+
         {showMenuIcon && (
           <div className={`left-sidebar-menu ${isMenuOpen ? 'open' : ''}`}>
             <div className="sidebar-menu-items">
@@ -278,16 +260,13 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
           </div>
         )}
 
-
         <div className="trending-container">
           <h2 className="trending-title">Trending Destination</h2>
-
 
           <div className="stacked-cards-wrapper">
             <button className="nav-arrow nav-arrow-left" onClick={handlePrev} aria-label="Previous">
               ‹
             </button>
-
 
             <div className="stacked-cards-container">
               {destinations.map((destination, index) => (
@@ -304,8 +283,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                       className="card-image"
                     />
 
-
-                    {/* Info and Like Icons */}
                     <div className="card-action-icons">
                       <div className="info-icon-wrapper">
                         <button
@@ -360,11 +337,9 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                       </button>
                     </div>
 
-
                     <div className="icon-badge">
                       <span className="destination-icon">{destination.icon}</span>
                     </div>
-
 
                     <div className="stats-container">
                       <div 
@@ -379,15 +354,20 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                         </svg>
                         <span>{destination.distance}</span>
                         {hoveredStatType === 'distance' && (
-                          <div className="stat-tooltip">Distance</div>
+                          <div className="stat-tooltip">Number of People Visited</div>
                         )}
                       </div>
 
-
+                      {/* Visitors badge - navigates to attractions */}
                       <div 
                         className="stat-badge"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleVisitorsClick(destination);
+                        }}
                         onMouseEnter={() => setHoveredStatType('visitors')}
                         onMouseLeave={() => setHoveredStatType(null)}
+                        style={{ cursor: 'pointer' }}
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -396,15 +376,20 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                         </svg>
                         <span>{destination.visitors}</span>
                         {hoveredStatType === 'visitors' && (
-                          <div className="stat-tooltip">Visitors</div>
+                          <div className="stat-tooltip">Attractions</div>
                         )}
                       </div>
 
-
+                      {/* UPDATED: Rating badge - navigates to packages */}
                       <div 
                         className="stat-badge"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handlePackagesView(destination);
+                        }}
                         onMouseEnter={() => setHoveredStatType('rating')}
                         onMouseLeave={() => setHoveredStatType(null)}
+                        style={{ cursor: 'pointer' }}
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                           <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="white" strokeWidth="2" />
@@ -412,11 +397,10 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                         </svg>
                         <span>{destination.rating}</span>
                         {hoveredStatType === 'rating' && (
-                          <div className="stat-tooltip">Rating</div>
+                          <div className="stat-tooltip">View Packages</div>
                         )}
                       </div>
                     </div>
-
 
                     <div className="card-content">
                       <div className="location-info">
@@ -427,7 +411,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                         <h3 className="location-name">{destination.name}</h3>
                       </div>
 
-
                       <p className="location-description">{destination.description}</p>
                     </div>
                   </div>
@@ -435,12 +418,10 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
               ))}
             </div>
 
-
             <button className="nav-arrow nav-arrow-right" onClick={handleNext} aria-label="Next">
               ›
             </button>
           </div>
-
 
           <div className="pagination-dots">
             {destinations.map((_, index) => (
@@ -453,7 +434,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
             ))}
           </div>
 
-
           <button className="plan-trip-btn" onClick={handleBookNow}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -464,7 +444,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
           </button>
         </div>
 
-
         <div className="side-buttons">
           <button className="side-btn search-btn" aria-label="Search" onClick={handleSearchOpen}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -473,13 +452,11 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
             </svg>
           </button>
 
-
           <button className="side-btn chat-btn" aria-label="Chat">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
-
 
           <button className="side-btn menu-btn" aria-label="Menu">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -493,148 +470,8 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
         {/* Detailed Card View Modal */}
         {showDetailedCard && (
           <div className="detailed-card-overlay" onClick={() => setShowDetailedCard(false)}>
-            <div className="detailed-card-modal" onClick={(e) => e.stopPropagation()}>
-
-
-              <button className="detailed-nav-arrow detailed-nav-left" onClick={handleDetailedCardPrev}>
-                ‹
-              </button>
-
-              <div className="detailed-card-content">
-                <div className="detailed-card-image-container">
-                  <img
-                    src={destinations[detailedCardIndex].image}
-                    alt={destinations[detailedCardIndex].name}
-                    className="detailed-card-image"
-                  />
-
-                  {/* Action Icons */}
-                  <div className="detailed-card-action-icons">
-                    <button
-                      className="detailed-icon-btn detailed-info-icon-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleInfoClick(destinations[detailedCardIndex]);
-                      }}
-                    >
-                      <img src="/info.png" alt="Info" />
-                    </button>
-                    <button
-                      className={`detailed-icon-btn detailed-like-icon-btn ${likedDestinations[destinations[detailedCardIndex].id] ? 'liked' : ''
-                        }`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleLikeClick(destinations[detailedCardIndex].id);
-                      }}
-                    >
-                      <img src="/like.png" alt="Like" />
-                    </button>
-                  </div>
-
-                  {/* Bottom Content */}
-                  <div className="detailed-card-bottom">
-                    <div className="detailed-location-info">
-                      <h2 className="detailed-location-name">{destinations[detailedCardIndex].name}</h2>
-                      <p className="detailed-location-description">
-                        {destinations[detailedCardIndex].description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <button className="detailed-plan-trip-btn" onClick={handleDetailedCardBookNow}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <polyline
-                      points="3.27 6.96 12 12.01 20.73 6.96"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <line
-                      x1="12"
-                      y1="22.08"
-                      x2="12"
-                      y2="12"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <span>Plan your SMART trip</span>
-                </button>
-              </div>
-
-              <button className="detailed-nav-arrow detailed-nav-right" onClick={handleDetailedCardNext}>
-                ›
-              </button>
-
-              {/* Bottom Right Icons */}
-              <div className="detailed-bottom-icons">
-                <button className="detailed-bottom-icon-btn">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="white" strokeWidth="2" />
-                    <polyline points="9 22 9 12 15 12 15 22" stroke="white" strokeWidth="2" />
-                  </svg>
-                </button>
-                <button className="detailed-bottom-icon-btn">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <line x1="3" y1="12" x2="21" y2="12" stroke="white" strokeWidth="2" />
-                    <line x1="3" y1="6" x2="21" y2="6" stroke="white" strokeWidth="2" />
-                    <line x1="3" y1="18" x2="21" y2="18" stroke="white" strokeWidth="2" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
-
-
-        {/* Info Modal */}
-        {showInfoModal && infoModalDestination && (
-          <div className="info-modal-overlay" onClick={() => setShowInfoModal(false)}>
-            <div className="info-modal" onClick={(e) => e.stopPropagation()}>
-              <button className="info-modal-close" onClick={() => setShowInfoModal(false)}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </button>
-              <div className="info-modal-content">
-                <div className="info-modal-icon">{infoModalDestination.icon}</div>
-                <h2>{infoModalDestination.name}</h2>
-                <p className="info-modal-description">{infoModalDestination.detailedInfo}</p>
-                <div className="info-modal-stats">
-                  <div className="info-stat">
-                    <span className="info-stat-label">Distance</span>
-                    <span className="info-stat-value">{infoModalDestination.distance}</span>
-                  </div>
-                  <div className="info-stat">
-                    <span className="info-stat-label">Visitors</span>
-                    <span className="info-stat-value">{infoModalDestination.visitors}K+</span>
-                  </div>
-                  <div className="info-stat">
-                    <span className="info-stat-label">Price from</span>
-                    <span className="info-stat-value">${infoModalDestination.price}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-        {/* Detailed Card View Modal */}
-        {showDetailedCard && (
-          <div className="detailed-card-overlay" onClick={() => setShowDetailedCard(false)}>
             <div className="detailed-card-wrapper" onClick={(e) => e.stopPropagation()}>
 
-              {/* Left Panel with Details */}
               <div className="detailed-left-panel">
                 <h2 className="panel-title">Why {destinations[detailedCardIndex].name.split(',')[1]?.trim() || destinations[detailedCardIndex].name} Suits You</h2>
 
@@ -688,23 +525,29 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                     <span className="stat-label">People Visited</span>
                     <span className="stat-value">5M+</span>
                   </div>
-                  <div className="stat-item">
+                  <div 
+                    className="stat-item"
+                    onClick={() => handleVisitorsClick(destinations[detailedCardIndex])}
+                    style={{ cursor: 'pointer' }}
+                  >
                     <span className="stat-label">Top Activities For You</span>
                     <span className="stat-value">2K+</span>
                   </div>
-                  <div className="stat-item">
-                    <span className="stat-label">Itineraries Available</span>
+                  <div 
+                    className="stat-item"
+                    onClick={() => handlePackagesView(destinations[detailedCardIndex])}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <span className="stat-label">Packages Available</span>
                     <span className="stat-value">55+</span>
                   </div>
                 </div>
               </div>
 
-              {/* Left Navigation Arrow */}
               <button className="detailed-nav-arrow detailed-nav-left" onClick={handleDetailedCardPrev}>
-               ←
+                ←
               </button>
 
-              {/* Main Destination Card */}
               <div className="detailed-destination-card">
                 <div className="detailed-card-image-container">
                   <img
@@ -713,11 +556,9 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                     className="detailed-card-image"
                   />
 
-                  {/* Card Action Icons - Top Right */}
                   <div className="detailed-card-icons">
                     <button
-                      className={`detailed-action-icon like-icon ${likedDestinations[destinations[detailedCardIndex].id] ? 'liked' : ''
-                        }`}
+                      className={`detailed-action-icon like-icon ${likedDestinations[destinations[detailedCardIndex].id] ? 'liked' : ''}`}
                       onClick={(e) => {
                         e.stopPropagation();
                         handleLikeClick(destinations[detailedCardIndex].id);
@@ -736,7 +577,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                     </button>
                   </div>
 
-                  {/* Bottom Text Content with Gradient */}
                   <div className="detailed-card-bottom-content">
                     <h3 className="detailed-card-title">{destinations[detailedCardIndex].name}</h3>
                     <p className="detailed-card-desc">{destinations[detailedCardIndex].description}</p>
@@ -744,53 +584,23 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                 </div>
               </div>
 
-              {/* Right Navigation Arrow */}
               <button className="detailed-nav-arrow detailed-nav-right" onClick={handleDetailedCardNext}>
-              →
+                →
               </button>
 
-              {/* Plan Trip Button - Below Card */}
               <button className="detailed-plan-btn" onClick={handleDetailedCardBookNow}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <polyline
-                    points="3.27 6.96 12 12.01 20.73 6.96"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <line
-                    x1="12"
-                    y1="22.08"
-                    x2="12"
-                    y2="12"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
                 <span>Plan your SMART trip</span>
               </button>
 
-              {/* Bottom Right Action Icons */}
               <div className="detailed-bottom-actions">
                 <button className="detailed-bottom-btn back-btn" onClick={() => setShowDetailedCard(false)}>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M19 12H5M12 19l-7-7 7-7"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                    <path d="M19 12H5M12 19l-7-7 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
                 <button className="detailed-bottom-btn menu-btn">
@@ -805,6 +615,37 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
           </div>
         )}
 
+        {/* Info Modal */}
+        {showInfoModal && infoModalDestination && (
+          <div className="info-modal-overlay" onClick={() => setShowInfoModal(false)}>
+            <div className="info-modal" onClick={(e) => e.stopPropagation()}>
+              <button className="info-modal-close" onClick={() => setShowInfoModal(false)}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </button>
+              <div className="info-modal-content">
+                <div className="info-modal-icon">{infoModalDestination.icon}</div>
+                <h2>{infoModalDestination.name}</h2>
+                <p className="info-modal-description">{infoModalDestination.detailedInfo}</p>
+                <div className="info-modal-stats">
+                  <div className="info-stat">
+                    <span className="info-stat-label">Distance</span>
+                    <span className="info-stat-value">{infoModalDestination.distance}</span>
+                  </div>
+                  <div className="info-stat">
+                    <span className="info-stat-label">Visitors</span>
+                    <span className="info-stat-value">{infoModalDestination.visitors}K+</span>
+                  </div>
+                  <div className="info-stat">
+                    <span className="info-stat-label">Price from</span>
+                    <span className="info-stat-value">${infoModalDestination.price}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Login Modal */}
         {showLoginModal && (
@@ -823,10 +664,8 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
                 </svg>
               </div>
 
-
               <h2 className="modal-heading">Sign In Required</h2>
               <p className="modal-message">Please sign in to book your dream vacation to {destinations[currentIndex].name}</p>
-
 
               <div className="modal-actions">
                 <button className="modal-btn-primary" onClick={handleLoginRedirect}>
@@ -840,7 +679,6 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
           </div>
         )}
       </section>
-
 
       {/* Search Overlay */}
       {isSearchOpen && (
@@ -880,11 +718,8 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
           </div>
         </div>
       )}
-
-
     </>
   );
 };
-
 
 export default TrendingDestination;

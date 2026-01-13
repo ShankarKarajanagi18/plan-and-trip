@@ -12,7 +12,8 @@ import TripPlanSummary from './pages/TripPlanSummary';
 import Checkout from './pages/Checkout';
 import InfluencerDashboard from './pages/InfluencerDashboard';
 import DayWisePlan from './pages/DayWisePlan';
-
+import Attractions from './components/Attractions';
+import PackagesListing from './components/PackagesListing';
 
 
 
@@ -38,6 +39,8 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/influencer-dashboard" element={<InfluencerDashboard />} />
           <Route path="/daywise-plan" element={<DayWisePlan />} />
+          <Route path="/attractions" element={<Attractions />} />
+          <Route path="/packages" element={<PackagesListing />} />
         
 
         </Routes>

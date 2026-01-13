@@ -1,0 +1,358 @@
+.attractions-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)),
+    url('https://images.unsplash.com/photo-1528164344705-47542687000d?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Top Navigation */
+.attractions-top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  z-index: 100;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+}
+
+.attractions-logo img {
+  height: 50px;
+  filter: brightness(0) invert(1);
+}
+
+.attractions-nav-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-icon-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.nav-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* Hero Section */
+.attractions-hero {
+  height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-top: 80px;
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+}
+
+.hero-title {
+  font-size: 140px;
+  font-weight: 700;
+  letter-spacing: 20px;
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: 6px;
+  margin: 20px 0 0 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Scrollable Cards Container */
+.attractions-scroll-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35vh;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 40px 0 40px 40px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.attractions-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.attractions-scroll-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.attractions-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+.attractions-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.attractions-cards-wrapper {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 10px;
+}
+
+.attraction-scroll-card {
+  flex: 0 0 auto;
+  width: 280px;
+  height: 100%;
+  position: relative;
+}
+
+.card-image-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.card-image-wrapper:hover {
+  transform: translateY(-8px);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Card Like Button */
+.card-like-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+.card-like-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.card-like-btn.liked {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Card Fee Badge */
+.card-fee-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+.fee-amount {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.fee-text {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 2px;
+}
+
+/* Card Rating Badge */
+.card-rating-badge {
+  position: absolute;
+  bottom: 80px;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(10px);
+  z-index: 2;
+}
+
+.rating-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Card Bottom Info */
+.card-bottom-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  padding: 50px 15px 15px;
+  z-index: 1;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+}
+
+.card-time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Floating Action Buttons */
+.attractions-floating-actions {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 100;
+}
+
+.floating-action-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.floating-action-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 100px;
+    letter-spacing: 15px;
+  }
+
+  .hero-subtitle {
+    font-size: 22px;
+  }
+
+  .attraction-scroll-card {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .attractions-top-nav {
+    padding: 15px 20px;
+  }
+
+  .attractions-logo img {
+    height: 40px;
+  }
+
+  .hero-title {
+    font-size: 70px;
+    letter-spacing: 10px;
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    letter-spacing: 4px;
+  }
+
+  .attractions-scroll-container {
+    padding: 30px 0 30px 20px;
+  }
+
+  .attraction-scroll-card {
+    width: 220px;
+  }
+
+  .floating-action-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .attractions-floating-actions {
+    bottom: 30px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 50px;
+    letter-spacing: 8px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .nav-icon-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
