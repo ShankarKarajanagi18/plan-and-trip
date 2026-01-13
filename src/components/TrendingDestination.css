@@ -1,3 +1,4 @@
+
 /* ============================================
    MAIN CONTAINER & BACKGROUND
    ============================================ */
@@ -1585,20 +1586,10 @@
   font-weight: 500;
 }
 
-.time-slots {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.time-text {
+  color: white;
   font-size: 0.92rem;
   font-weight: 600;
-}
-
-.time-slot {
-  color: white;
-}
-
-.time-divider {
-  color: rgba(255, 255, 255, 0.4);
 }
 
 .panel-stats {

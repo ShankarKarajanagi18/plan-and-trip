@@ -513,11 +513,7 @@ const TrendingDestination = ({ showMenuIcon = false }) => {
 
                 <div className="panel-best-time">
                   <h4>Best time to visit</h4>
-                  <div className="time-slots">
-                    <span className="time-slot">Mar - Apr</span>
-                    <span className="time-divider">|</span>
-                    <span className="time-slot">Oct - Nov</span>
-                  </div>
+                  <p className="time-text">Mar - Apr | Oct - Nov</p>
                 </div>
 
                 <div className="panel-stats">

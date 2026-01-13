@@ -1,36 +1,28 @@
-/* Main Container */
 .influencer-dashboard {
-  width: 100%;
   min-height: 100vh;
-  height: auto;
   position: relative;
   overflow-x: hidden;
-  overflow-y: auto;
 }
 
 /* Overlay for background */
 .dashboard-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  min-height: 100%;
-  height: auto;
+  bottom: 0;
   background: linear-gradient(
     135deg,
     rgba(185, 195, 236, 0.75) 0%,
     rgba(202, 180, 224, 0.75) 100%
   );
   z-index: 0;
-  pointer-events: none;
 }
 
 /* Content container */
 .dashboard-content {
   position: relative;
   z-index: 1;
-  width: 100%;
-  height: auto;
 }
 
 /* ==================== HERO SECTION ==================== */
